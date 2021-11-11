@@ -1,0 +1,29 @@
+Задача 1
+
+SELECT Passenger.name, COUNT(*) as count
+FROM Pass_in_trip 
+INNER JOIN Passenger ON Passenger.id = Pass_in_trip.passenger
+GROUP BY Passenger.id
+ORDER BY count DESC, Passenger.name ASC
+
+Задча 2
+
+SELECT DISTINCT (TIMEDIFF((SELECT end_pair FROM Timepair WHERE id = 4),
+(SELECT start_pair FROM Timepair WHERE id = 2))) as time
+FROM Timepair
+
+Задача 3
+
+SELECT DISTINCT Rooms.*
+FROM Rooms
+INNER JOIN Reservations ON Rooms.id = Reservations.room_id
+WHERE EXTRACT(week from start_date)= 11 AND EXTRACT(year from start_date)= 2020
+
+Задача 4
+
+SELECT classroom 
+FROM Schedule
+GROUP BY classroom
+HAVING COUNT(classroom) 
+ORDER BY COUNT(classroom) DESC 
+LIMIT 2
